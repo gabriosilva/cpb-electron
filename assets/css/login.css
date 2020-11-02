@@ -1,0 +1,80 @@
+.content-background{
+    position: absolute;
+    top:44px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.fixed{
+    position:fixed;
+}
+.center-align{
+    align-items: center;
+}
+
+.content{
+    background-color: whitesmoke;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.body-content{
+ 
+    backdrop-filter: blur(2px);
+    height: 100%;
+    width: 100%;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content{
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.input-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  padding: 10px;
+}
+
+.login-input{
+    height: 32px;
+    padding:5px;
+    outline: none;
+    border: none;
+    transition: 0.2s all;
+}
+
+.login-input:focus{
+    color:white;
+    background-color: #616161;
+}
+.login-btn{
+    padding: 15px 25px;
+    width: 80%;
+    margin:4px;    
+    color:white;
+    transition: 0.2s all;
+}
+
+.login-btn:hover{
+    transform: scale(1.1,1.1);
+    background-color: #4CAF50;
+}
+
+.login-form-label{
+
+}
+
+.dark{
+    background-color: #616161;
+}

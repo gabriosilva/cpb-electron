@@ -1,0 +1,26 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron-updater": "^4.3.5",
+    "jquery": "^3.5.1"
+  },
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/gabriosilva/cpb-electron.git"
+  },
+
+  "devDependencies": {
+    "electron-builder": "^22.9.1"
+  }
+}

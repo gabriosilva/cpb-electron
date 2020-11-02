@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <script>let $ = require('jquery');</script>
+</head>
+<body>
+    <div class="content">
+        <div class="content-header">
+            <div class="header-left">
+                <span class="header-pic"><img id="profileImg" src="assets/images/background/cuteDogVertical.jpg"></span>
+                <div class="header-text">
+                    <span class="header_title">Your</span>
+                    <span class="header_title">Activities</span>
+                </div>
+                <span class="header-icon" id="offlineIcon" hidden><img src="assets/images/icons/wifi-off-white48px.png"></span>
+            </div>
+            <div class="header-right">
+                <span class="header-icon" id="reloadIcon"><img src="assets/images/icons/reload50px.png"></span>
+                <span class="header-icon" id="logOutIcon"><img src="assets/images/icons/exit48px.png"></span>
+                <span class="header-closeBtn" id="closeBtn">&times;</span>
+            </div>
+        </div>
+        <div class="loading-div">
+            <span class="loading-text scale-up-center" id="loadingAlphabet">A</span>
+        </div>
+        <div class="content-itens" id="contentItens">
+            <!--
+            <div class="item-container">
+                <div class="small-circle item-circle"></div>
+                <div class="item-span-container">
+                    <span class="item_title item_span">Activity Name AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAA A A AAAAAAAAAAAAAAA</span>
+                    <span class="item_type item_span">Class type</span>
+                </div>
+            </div>
+        -->
+        </div>
+    </div>
+    <script src="./assets/js/functions.js"></script>
+    <script src="./assets/js/randomLettersLoading.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
