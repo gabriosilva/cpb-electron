@@ -113,3 +113,9 @@ $("#closeBtn").on("click",()=>{
 $("#loginBtn").on("click",()=>{
    logIn();
 });
+
+$(document).on('keypress',(e)=>{
+        if(e.key === 'Enter'){
+            logIn();
+        }
+})
