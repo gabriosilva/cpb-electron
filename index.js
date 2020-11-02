@@ -19,6 +19,7 @@ function createWindow(){
         height:500,
         frame:false,
         transparent:false,
+        icon:"./assets/images/icons/appIcon512px.png",
         webPreferences:{
             nodeIntegration: true,
             enableRemoteModule:true,
@@ -35,6 +36,7 @@ function createLoginWindow(){
         height:500,
         frame:false,
         transparent:false,
+        icon:"./assets/images/icons/appIcon512px.png",
         webPreferences:{
             nodeIntegration: true,
             enableRemoteModule:true,
@@ -53,6 +55,7 @@ function createViewWindow(){
         height:600,
         frame:false,
         transparent:false,
+        icon:"./assets/images/icons/appIcon512px.png",
         webPreferences:{
             nodeIntegration:true,
             enableRemoteModule:true,
