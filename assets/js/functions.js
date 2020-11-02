@@ -25,6 +25,25 @@ function makeRequest(reqType="GET",baseUrl,headerObj=null,body='',online=true){
     });
 };
 
+function yesCancelDialog(title,message,onYes,onCancel){
+    const remote = require('electron').remote;
+    const dialog = remote.dialog;
+    dialog.showMessageBox(null,{
+        type: 'none', 
+        buttons: ['cancel','ok'], 
+        defaultId: 0, 
+        cancelId: 0,
+        title:title,
+        message:message
+    }).then(box=>{
+        const btnIndex = box.response;
+        if(btnIndex === 0){
+            onCancel();
+        }else if(btnIndex === 1){
+            onYes();
+        }
+    });
+}
 
 function jsonToString(jsonObj){
     return JSON.stringify(jsonObj);

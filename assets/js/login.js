@@ -6,6 +6,10 @@ function closeWindow(){
     window.close();
 }
 
+function restartApp(){
+    ipcRenderer.send('restart_app');
+};
+
 window.addEventListener('load', (event)=>{
     let token = returnStorageObjData("token");
     let studentId = returnStorageObjData("studentId");
@@ -15,6 +19,21 @@ window.addEventListener('load', (event)=>{
     }
     console.log(token);
 })
+
+ipcRenderer.on('update_available', () => {
+    ipcRenderer.removeAllListeners('update_available');
+    const message = 'A new update is available. Downloading now...';
+    const title = 'New update available!';
+    alertDialog(title,message);
+  });
+  ipcRenderer.on('update_downloaded', () => {
+    ipcRenderer.removeAllListeners('update_downloaded');
+    const message = 'Update Downloaded. It will be installed on restart. Restart now?';
+    const title = 'Doenload Concluded!';
+    yesCancelDialog(title,message,restartApp,null);
+});
+
+
 
 function getLoginParams(){
     let params = new Object();

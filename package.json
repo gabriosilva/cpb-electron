@@ -1,26 +1,40 @@
 {
-  "name": "helloworld",
+  "name": "cpb-widget",
   "version": "1.0.0",
-  "description": "",
+  "description": "an widget :).",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "dist": "electron-builder",
+    "release": "npm run build && electron-builder --publish=never",
+    "deploy": "electron-builder --publish=always"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "electron-updater": "^4.3.5",
     "jquery": "^3.5.1"
   },
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/gabriosilva/cpb-electron.git"
   },
-
   "devDependencies": {
-    "electron-builder": "^22.9.1"
-  }
+    "electron-builder": "^22.9.1",
+    "electron": "10.1.2"
+  },
+  "build": {
+    "appId": "com.delta.cpb-widget",
+    "win": {
+    }
+  },
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "gabriosilva",
+      "repo": "cpb-electron"
+    }
+  ]
 }
