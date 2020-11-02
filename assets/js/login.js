@@ -22,14 +22,14 @@ window.addEventListener('load', (event)=>{
 
 ipcRenderer.on('update_available', () => {
     ipcRenderer.removeAllListeners('update_available');
-    const message = 'A new update is available. Downloading now...';
-    const title = 'New update available!';
+    const message = 'Uma nova atualização está disponível! Iniciando Download....';
+    const title = 'Nova atualização disponível!';
     alertDialog(title,message);
   });
   ipcRenderer.on('update_downloaded', () => {
     ipcRenderer.removeAllListeners('update_downloaded');
-    const message = 'Update Downloaded. It will be installed on restart. Restart now?';
-    const title = 'Doenload Concluded!';
+    const message = 'Atualização Baixada. O aplicativo será atualizado após a reinicialização. Deseja reiniciar agora?';
+    const title = 'Atualização Baixada!';
     yesCancelDialog(title,message,restartApp,null);
 });
 

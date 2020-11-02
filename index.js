@@ -2,8 +2,16 @@ const {app, BrowserWindow,ipcMain, remote } = require('electron')
 const {autoUpdater} = require('electron-updater');
 require('jquery');
 require('./assets/js/functions.js')
-
 let win;
+
+
+// Object.defineProperty(app, 'isPackaged', {
+//     get() {
+//       return true;
+//     }
+//   });
+
+
 
 function createWindow(){
     win = new BrowserWindow({
@@ -35,14 +43,8 @@ function createLoginWindow(){
 
     win.loadFile('login.html');
     win.once('ready-to-show', () => {
-        autoUpdater.checkForUpdatesAndNotify();
     });
-    autoUpdater.on('update-available', () => {
-        mainWindow.webContents.send('update_available');
-      });
-      autoUpdater.on('update-downloaded', () => {
-        mainWindow.webContents.send('update_downloaded');
-    });
+    
 }
 
 function createViewWindow(){
@@ -60,7 +62,7 @@ function createViewWindow(){
     
 }
 
-app.whenReady().then(createLoginWindow);
+app.whenReady().then(createLoginWindow).then(autoUpdater.checkForUpdatesAndNotify());
 
 app.on('window-all-closed', ()=>{
     if(process.platform !== "darwin"){
@@ -107,3 +109,10 @@ app.on('web-contents-created', (event, contents) => {
       });
     }
   });
+
+autoUpdater.on('update-available', () => {
+    win.webContents.send('update_available');
+  });
+autoUpdater.on('update-downloaded', () => {
+    win.webContents.send('update_downloaded');
+});

@@ -1,13 +1,13 @@
 {
   "name": "cpb-widget",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "an widget :).",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "electron-builder",
-    "release": "npm run build && electron-builder --publish=never",
+    "release": "electron-builder -p never",
     "deploy": "electron-builder --publish=always"
   },
   "author": "",

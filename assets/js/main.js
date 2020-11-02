@@ -15,6 +15,23 @@ function closeWindow(){
     window.close();
 }
 
+function restartApp(){
+    ipcRenderer.send('restart_app');
+};
+
+ipcRenderer.on('update_available', () => {
+    ipcRenderer.removeAllListeners('update_available');
+    const message = 'Uma nova atualização está disponível! Iniciando Download....';
+    const title = 'Nova atualização disponível!';
+    alertDialog(title,message);
+  });
+ipcRenderer.on('update_downloaded', () => {
+    ipcRenderer.removeAllListeners('update_downloaded');
+    const message = 'Atualização Baixada. O aplicativo será atualizado após a reinicialização. Deseja reiniciar agora?';
+    const title = 'Atualização Baixada!';
+    yesCancelDialog(title,message,restartApp,null);
+});
+
 function loadingLoop(){
     setTimeout(function(){
         let letter = getRandomLetterFromAlphabet();
