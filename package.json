@@ -1,14 +1,15 @@
 {
-  "name": "cpb-widget",
+  "name": "Astute-Cpb",
   "version": "1.0.0",
   "description": "an widget :).",
+  "author":"Gabrio Lina",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "electron-builder",
-    "release": "electron-builder -p never",
-    "deploy": "electron-builder --publish=always"
+    "release": "electron-builder build -p never",
+    "deploy": "electron-builder build --publish=always"
   },
   "author": "",
   "license": "ISC",
@@ -28,7 +29,8 @@
   "build": {
     "appId": "com.delta.cpb-widget",
     "win": {
-    }
+      "icon":"./resources/icons/icon.ico"
+    } 
   },
   "publish": [
     {
