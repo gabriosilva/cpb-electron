@@ -2,7 +2,9 @@
 const remote = require('electron').remote;
 logSessionId('viewActivities');
 let userId;
+let schoolId;
 userId = returnStorageObjData('studentId');
+schoolId = returnStorageObjData('schoolId');
 //setUserProfile();
 // let userId = "33410";
 // userId=63193;
@@ -46,25 +48,48 @@ function loadingLoop(){
 };
 
 loadingLoop();
-makeRequest("GET",`https://api-aulas.educacaoadventista.org.br/api/v1/app/student/${userId}/pending?school_id=406`).then(response=>{
-    loading = false;
-    const value = jsonToString(response);
+makeRequest("GET",`https://api-aulas.educacaoadventista.org.br/api/v1/app/student/${userId}/pending?school_id=${schoolId}`).then(response=>{
+    const today = new Date();
+    const parsedDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+    console.log(parsedDate);
+    //const value = jsonToString(response);
     const jsonObj = JSON.parse(response);
-    const jsonArray = jsonObj.data;
-    addElementToStorage("itensJson",value);
-    jsonArray.forEach(element => {
-        const today = new Date();
-        const due = new Date(element.date_delivery);
-        const timeDifference = due-today;
-        const remainingDays =   Math.round(timeDifference/(1000 * 3600 * 24));
-        let circleType = null;
-        if(remainingDays<=2){
-            circleType = 1;
+    let jsonArray = jsonObj.data;
+    makeRequest("GET",`https://api-aulas.educacaoadventista.org.br/api/v1/app/student/${userId}/classes?date_start=${parsedDate}&date_end=${parsedDate}&school_id=${schoolId}`).then(data=>{
+        loading = false;
+        let storageObj = new Object();
+        const pendingJsonObj = JSON.parse(data);
+        const pendingJsonArray = pendingJsonObj.data;
+        jsonArray.push(...pendingJsonArray);
+        storageObj.data = jsonArray;
+        const value = jsonToString(jsonToString(storageObj));
+        addElementToStorage("itensJson",value);
+        jsonArray.forEach(element => {
+            const today = new Date();
+            const due = new Date(element.date_delivery);
+            const timeDifference = due-today;
+            const remainingDays =   Math.round(timeDifference/(1000 * 3600 * 24));
+            let circleType = null;
+            if(remainingDays<=2){
+                circleType = 1;
+            }else{
+                circleType = 0
+                console.log(remainingDays);
+            }
+            addItem(element.title,element.discipline,element.id,circleType);
+        });
+    }).catch(error =>{
+        $("#offlineIcon").show()
+        alertDialog('Error',String(error));
+        const offlineData = returnStorageObjData('itensJson');
+        if(offlineData !== null){
+
         }else{
-            circleType = 0
-            console.log(remainingDays);
+            logOut();
         }
-        addItem(element.title,element.discipline,element.id,circleType);
+        console.log(error);
+        console.log("ABCDE");
+        loading = false;
     });
 }).catch(error =>{
     $("#offlineIcon").show()

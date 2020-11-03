@@ -92,7 +92,10 @@ function logIn(){
                 const objData = jsonObj.data;
                 const studentInfo = objData.student_info;
                 const studentId = studentInfo.id_student;
+                const schoolId = studentInfo.id_school;
+                console.log(schoolId);
                 addElementToStorage("studentId",studentId);
+                addElementToStorage("schoolId",schoolId);
                 addElementToStorage('studentObj',response);
                 console.log(ipcRenderer.sendSync('viewActivities','ping'));
                 closeWindow();
