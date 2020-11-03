@@ -1,11 +1,11 @@
 const { event } = require('jquery');
 const {ipcRenderer} = require('electron');
 const remote = require('electron').remote;
+logSessionId('login');
 function closeWindow(){
     let window = remote.getCurrentWindow();
     window.close();
 }
-
 function restartApp(){
     ipcRenderer.send('restart_app');
 };
@@ -15,6 +15,7 @@ window.addEventListener('load', (event)=>{
     let studentId = returnStorageObjData("studentId");
     if(token !== null && studentId !== null){
         console.log(ipcRenderer.sendSync('viewActivities','ping'));
+        logSessionId();
         closeWindow();
     }
     console.log(token);

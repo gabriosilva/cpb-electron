@@ -1,5 +1,6 @@
 
 const remote = require('electron').remote;
+logSessionId('viewActivities');
 let userId;
 userId = returnStorageObjData('studentId');
 //setUserProfile();
